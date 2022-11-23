@@ -38,6 +38,28 @@ class ItemCell: UICollectionViewCell {
         
     }()
     
+    let kwdLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "KWD"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+        
+    }()
+    
+    let priceLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "28.085"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+        
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -46,6 +68,8 @@ class ItemCell: UICollectionViewCell {
         
         addSubview(productImage)
         addSubview(sameDayDeliveryLabel)
+        addSubview(kwdLabel)
+        addSubview(priceLabel)
         
         setConstraints()
         
@@ -64,6 +88,9 @@ class ItemCell: UICollectionViewCell {
             sameDayDeliveryLabel.leadingAnchor.constraint(equalTo: productImage.leadingAnchor),
             sameDayDeliveryLabel.trailingAnchor.constraint(equalTo: productImage.trailingAnchor),
             sameDayDeliveryLabel.heightAnchor.constraint(equalToConstant: 25),
+            
+            kwdLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 10),
+            kwdLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
         
         ])
     }

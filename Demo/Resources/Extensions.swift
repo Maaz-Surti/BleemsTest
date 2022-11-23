@@ -96,7 +96,7 @@ extension UIImageView{
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 
-                DispatchQueue.main.async { /// execute on main thread
+                DispatchQueue.main.async {
                     
                     self.image = UIImage(data: data)
                 }

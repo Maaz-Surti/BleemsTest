@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 import SDWebImage
 
-class ItemCell: UICollectionViewCell {
+class FeaturedItemCell: UICollectionViewCell {
     
-    static let identifier = "ItemCell"
+    static let identifier = "FeaturedItemCell"
     
     let productImage: UIImageView = {
         
@@ -54,7 +54,18 @@ class ItemCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "28.085"
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+        
+    }()
+    
+    let shopNameLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "The Florist"
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 13, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
         
@@ -64,12 +75,13 @@ class ItemCell: UICollectionViewCell {
         super.init(frame: frame)
 
         //contentView.translatesAutoresizingMaskIntoConstraints = false
-        backgroundColor = .darkGray
+        //backgroundColor = .darkGray
         
         addSubview(productImage)
         addSubview(sameDayDeliveryLabel)
         addSubview(kwdLabel)
         addSubview(priceLabel)
+        addSubview(shopNameLabel)
         
         setConstraints()
         
@@ -89,22 +101,31 @@ class ItemCell: UICollectionViewCell {
             sameDayDeliveryLabel.trailingAnchor.constraint(equalTo: productImage.trailingAnchor),
             sameDayDeliveryLabel.heightAnchor.constraint(equalToConstant: 25),
             
-            kwdLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 10),
+            kwdLabel.topAnchor.constraint(equalTo: productImage.bottomAnchor, constant: 13),
             kwdLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            
+            priceLabel.leadingAnchor.constraint(equalTo: kwdLabel.trailingAnchor, constant: 4),
+            priceLabel.bottomAnchor.constraint(equalTo: kwdLabel.bottomAnchor),
+            
+            shopNameLabel.topAnchor.constraint(equalTo: kwdLabel.bottomAnchor, constant: -1),
+            shopNameLabel.leadingAnchor.constraint(equalTo: kwdLabel.leadingAnchor),
         
         ])
     }
     
     func configure(with model: FeaturedItem) {
 
-        productImage.sd_imageIndicator = SDWebImageActivityIndicator.grayLarge
+        productImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
         productImage.sd_imageTransition = .fade
         productImage.sd_setImage(with: URL(string: model.photo)!)
         
         //productImage.downloadImage(model.photo)
         
+        let itemPrice = model.itemPrice.components(separatedBy: " ")
+        
         sameDayDeliveryLabel.isHidden = !model.sameDayDelivery
-
+        priceLabel.text = itemPrice[1]
+        shopNameLabel.text = model.shopName
     }
     
     required init?(coder: NSCoder) {

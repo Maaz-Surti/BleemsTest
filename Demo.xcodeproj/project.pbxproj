@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05144EA459EA806C78A60923 /* Pods_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AB39CCE327E9BC3A0EEC5D /* Pods_Demo.framework */; };
+		5D333A83292F7471006D3DDF /* BaseCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D333A82292F7471006D3DDF /* BaseCollectionView.swift */; };
 		5D35C438292E287C005004F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C437292E287C005004F4 /* AppDelegate.swift */; };
 		5D35C43A292E287C005004F4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C439292E287C005004F4 /* SceneDelegate.swift */; };
 		5D35C43C292E287C005004F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C43B292E287C005004F4 /* ViewController.swift */; };
@@ -18,12 +19,13 @@
 		5D35C456292E3253005004F4 /* FeaturedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C455292E3253005004F4 /* FeaturedItemCell.swift */; };
 		5D35C458292E39B0005004F4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C457292E39B0005004F4 /* MainView.swift */; };
 		5D35C45A292E4A21005004F4 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C459292E4A21005004F4 /* Models.swift */; };
-		5D35C45C292E4FB0005004F4 /* FeaturedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C45B292E4FB0005004F4 /* FeaturedItem.swift */; };
+		5D35C45C292E4FB0005004F4 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D35C45B292E4FB0005004F4 /* ViewModels.swift */; };
 		80B99CE4292F3857007E54DB /* CommonItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B99CE3292F3857007E54DB /* CommonItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		55C63488995465ACE8C1B8FF /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		5D333A82292F7471006D3DDF /* BaseCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionView.swift; sourceTree = "<group>"; };
 		5D35C434292E287C005004F4 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D35C437292E287C005004F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D35C439292E287C005004F4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +38,7 @@
 		5D35C455292E3253005004F4 /* FeaturedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItemCell.swift; sourceTree = "<group>"; };
 		5D35C457292E39B0005004F4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		5D35C459292E4A21005004F4 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		5D35C45B292E4FB0005004F4 /* FeaturedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedItem.swift; sourceTree = "<group>"; };
+		5D35C45B292E4FB0005004F4 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		80B99CE3292F3857007E54DB /* CommonItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonItemCell.swift; sourceTree = "<group>"; };
 		A5AB39CCE327E9BC3A0EEC5D /* Pods_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0DDB56309B22D800EE9B423 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				5D35C437292E287C005004F4 /* AppDelegate.swift */,
 				5D35C439292E287C005004F4 /* SceneDelegate.swift */,
+				5D333A82292F7471006D3DDF /* BaseCollectionView.swift */,
 			);
 			path = Lifecycle;
 			sourceTree = "<group>";
@@ -134,7 +137,7 @@
 		5D35C451292E3162005004F4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5D35C45B292E4FB0005004F4 /* FeaturedItem.swift */,
+				5D35C45B292E4FB0005004F4 /* ViewModels.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -276,10 +279,11 @@
 				5D35C43C292E287C005004F4 /* ViewController.swift in Sources */,
 				5D35C45A292E4A21005004F4 /* Models.swift in Sources */,
 				5D35C438292E287C005004F4 /* AppDelegate.swift in Sources */,
-				5D35C45C292E4FB0005004F4 /* FeaturedItem.swift in Sources */,
+				5D35C45C292E4FB0005004F4 /* ViewModels.swift in Sources */,
 				5D35C43A292E287C005004F4 /* SceneDelegate.swift in Sources */,
 				80B99CE4292F3857007E54DB /* CommonItemCell.swift in Sources */,
 				5D35C44C292E2DC2005004F4 /* Extensions.swift in Sources */,
+				5D333A83292F7471006D3DDF /* BaseCollectionView.swift in Sources */,
 				5D35C456292E3253005004F4 /* FeaturedItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +424,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Z59KNR7ZY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -451,6 +456,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Z59KNR7ZY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

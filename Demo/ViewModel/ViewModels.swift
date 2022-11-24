@@ -1,5 +1,5 @@
 //
-//  FeaturedItem.swift
+//  ViewModels.swift
 //  Demo
 //
 //  Created by RCD on 23/11/2022.
@@ -14,5 +14,16 @@ struct FeaturedItem {
     let itemName: String
     let shopName: String
     let itemPrice: String
+    
+}
+
+struct CommonItem {
+    
+    let photo: String
+    let sameDayDelivery: Bool
+    let itemName: String
+    let shopName: String
+    let itemPrice: String
+    let oldPrice: String
     
 }

@@ -27,17 +27,18 @@ class ViewController: UIViewController {
         return label
         
     }()
-
+    
     let scrollView: UIScrollView = {
         
         let sv = UIScrollView()
+        sv.showsVerticalScrollIndicator = false
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
         
     }()
     
     lazy var horizontalCollectionView: UICollectionView = {
-
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
@@ -54,13 +55,12 @@ class ViewController: UIViewController {
     }()
     
     lazy var verticalCollectionView: UICollectionView = {
-
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
         
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let layout = UICollectionViewFlowLayout()
+        let cv = BaseCollectionView(frame: .zero, collectionViewLayout: layout)
+        
         cv.register(CommonItemCell.self, forCellWithReuseIdentifier: CommonItemCell.identifier)
-        cv.showsHorizontalScrollIndicator = false
+        cv.showsVerticalScrollIndicator = false
         cv.dataSource = self
         cv.delegate = self
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
     
     var featuredItems = [FeaturedItem]()
     
-   // var commonItems = [commonItems]()
+    var commonItems = [CommonItem]()
     
     var heightConstraint = NSLayoutAnchor<NSLayoutDimension>()
     
@@ -91,9 +91,9 @@ class ViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left")?.withRenderingMode(.alwaysOriginal).withTintColor(.black), style: .done, target: nil, action: nil)
         
         view.addSubview(lineView)
-//        view.addSubview(popularItemsLabel)
-//        view.addSubview(horizontalCollectionView)
-//        view.addSubview(verticalCollectionView)
+        //        view.addSubview(popularItemsLabel)
+        //        view.addSubview(horizontalCollectionView)
+        //        view.addSubview(verticalCollectionView)
         view.addSubview(scrollView)
         scrollView.addSubview(popularItemsLabel)
         scrollView.addSubview(horizontalCollectionView)
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
                 DispatchQueue.main.async {
                     
                     self?.horizontalCollectionView.reloadData()
-                   // self?.verticalCollectionView.reloadData()
+                    self?.verticalCollectionView.reloadData()
                 }
             }
         }
@@ -123,7 +123,7 @@ class ViewController: UIViewController {
         
         
         
-       
+        
     }
     
     func setConstraints() {
@@ -151,10 +151,8 @@ class ViewController: UIViewController {
             verticalCollectionView.topAnchor.constraint(equalTo: horizontalCollectionView.bottomAnchor, constant: 20),
             verticalCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             verticalCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            //verticalCollectionView.heightAnchor.constraint(equalToConstant: 1000),
             verticalCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-
-        
+            
         ])
         
     }
@@ -169,11 +167,17 @@ class ViewController: UIViewController {
             switch result {
                 
             case .success(let data):
-    
+                
                 for item in  data.result.featuredItems {
                     
                     self?.featuredItems.append(FeaturedItem(photo: item.pic, sameDayDelivery: item.sameDayDelivery, itemName: item.itemName, shopName: item.shopName, itemPrice: item.price))
-                   
+                    
+                    
+                }
+                
+                for item in data.result.data {
+                    
+                    self?.commonItems.append(CommonItem(photo:item.pic, sameDayDelivery: item.sameDayDelivery, itemName: item.itemName, shopName: item.shopName, itemPrice: item.price, oldPrice: item.oldPrice))
                 }
                 
                 completion(true)
@@ -198,7 +202,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
             return featuredItems.count
             
         case verticalCollectionView:
-            return 20
+            return commonItems.count
             
         default:
             return 0
@@ -225,14 +229,20 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommonItemCell.identifier, for: indexPath) as! CommonItemCell
             
+            if !commonItems.isEmpty {
+                
+                cell.configure(with: commonItems[indexPath.item])
+            }
+            
             return cell
-        
+            
         default:
             return UICollectionViewCell()
         }
         
-       
+        
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -242,7 +252,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
             return CGSize(width: view.width/2.7, height: horizontalCollectionView.height)
             
         case verticalCollectionView:
-            return CGSize(width: view.width/2, height: 200)
+            return CGSize(width: view.width/2.3, height: 200)
         default:
             return CGSize.zero
         }

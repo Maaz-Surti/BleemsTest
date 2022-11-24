@@ -108,3 +108,25 @@ extension UIImageView{
     
 }
 
+
+extension NSAttributedString{
+    
+    func withLineSpacing(_ spacing: CGFloat, lineHeight: CGFloat, alignment: NSTextAlignment = .justified) -> NSAttributedString {
+        
+        let attributedString = NSMutableAttributedString(attributedString: self)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        paragraphStyle.paragraphSpacing = 0
+        paragraphStyle.alignment = alignment
+        //paragraphStyle.paragraphSpacing = 0
+        paragraphStyle.minimumLineHeight = lineHeight
+        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.lineSpacing = spacing
+        attributedString.addAttribute(.paragraphStyle,
+                                      value: paragraphStyle,
+                                      range: NSRange(location: 0, length: string.count))
+        //attributedString.addAttribute(., value: <#T##Any#>, range: <#T##NSRange#>)
+        return NSAttributedString(attributedString: attributedString)
+    }
+}
+

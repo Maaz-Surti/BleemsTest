@@ -18,6 +18,14 @@ class ViewController: UIViewController {
         
     }()
     
+    let activityIndicator: UIActivityIndicatorView  = {
+        
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+        
+    }()
+    
     let popularItemsLabel: UILabel = {
         
         let label = UILabel()
@@ -102,6 +110,10 @@ class ViewController: UIViewController {
         
         aView.translatesAutoresizingMaskIntoConstraints = false
         
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        
         setConstraints()
         
         
@@ -111,6 +123,7 @@ class ViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     
+                    self?.activityIndicator.stopAnimating()
                     self?.horizontalCollectionView.reloadData()
                     self?.verticalCollectionView.reloadData()
                 }
@@ -152,6 +165,9 @@ class ViewController: UIViewController {
             verticalCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             verticalCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             verticalCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
         ])
         
